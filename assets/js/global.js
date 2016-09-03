@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
             if (key !== 'uri' && key !== 'host') {
                 $('[data-id="' + key + '"]').prop('readonly', true);
             }
-            $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__desc').text(value)
+            $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__version').text(value)
         });
         $('.bbpcs__panel__content').hide();
         $('.bbpcs__summary').show();
@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
             switch_editor('show');
         }
         var inputId = $('.bbpcs__summary__list__item--' + $(this).data('id'));
-        inputId.find('.bbpcs__summary__list__item__desc').text($(this).val());
+        inputId.find('.bbpcs__summary__list__item__version').text($(this).val());
 
     });
 
@@ -93,11 +93,11 @@ jQuery(document).ready(function ($) {
             textEditor.text('');
             textEditor.prop('disabled', false);
             textEditor.parent().css('opacity', 1);
-            $('.bbpcs__container .bbpcs__alert--warning').remove();
+            $('.bbpcs__container .bbpcs__alert').remove();
             $('.bbp-form').show();
             return true;
         } else {
-            $('.bbpcs__container').append('<div class="bbpcs__alert bbpcs__alert--warning">' + bbpcs_alert_empty_form + '</div>');
+            $('.bbpcs__container').prepend('<div class="bbpcs__alert bbpcs__alert--info text-center">' + bbpcs_alert_empty_form + '</div>');
             $('.bbp-form').hide();
             return false;
         }

@@ -7,6 +7,12 @@
       &__title {
         font-weight: bold;
       }
+      &__version {
+        @extend .label, .label-info;
+      }
+      &__latest {
+        @extend .label, .label-success;
+      }
     }
   }
 }

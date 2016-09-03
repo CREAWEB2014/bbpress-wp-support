@@ -1,6 +1,8 @@
 @import "sass/variables";
-@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/alerts";
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/labels";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/labels";
 @import "sass/typos";
 @import "sass/main";
 @import "sass/panel";
