@@ -234,7 +234,7 @@ function add_support_form( $content ) {
 add_action( 'bbp_theme_before_topic_form', __NAMESPACE__ . '\\add_support_form' );
 
 function save_support_params( $post_id ) {
-	if ( ! isset( $_POST['support'] ) ) {
+	if ( ! isset( $_POST['support'] ) || is_admin() ) {
 		return $post_id;
 	}
 	// Remove Parser field, we don't need to save it
