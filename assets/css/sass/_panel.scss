@@ -18,7 +18,8 @@
   }
   &__content {
     &__description {
-      text-align: justify;
+      @extend .alert, .alert-info;
+
     }
   }
 }
