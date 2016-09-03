@@ -4,7 +4,7 @@
     ".js"
   ],
   "excludeFiles": [
-    "assets/scripts/**.min.js"
+    "assets/js/**.min.js"
   ],
   "maxErrors": 500
 }
