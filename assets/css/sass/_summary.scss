@@ -11,7 +11,7 @@
         @extend .label, .label-info;
       }
       &__latest {
-        @extend .label, .label-success;
+        @extend .label, .label-danger;
       }
     }
   }
