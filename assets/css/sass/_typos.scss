@@ -1,12 +1,26 @@
-.bbpcs {
-  &__alert {
-    @extend .alert, .alert-warning;
+#bbpcs {
+  .bbpcs {
+    &__alert {
+      @extend .alert, .alert-info;
+      &--danger {
+        @extend .alert-danger;
+      }
+      &--success {
+        @extend .alert-success;
+      }
+      &--warning {
+        @extend .alert-warning;
+      }
+    }
+    &__label {
+      border: 1px solid darken(lightgreen, 15%);
+      color: #fff;
+      background-color: lightgreen;
+      border-radius: 6px;
+      padding: 0 6px;
+    }
   }
-  &__label {
-    border: 1px solid darken(lightgreen, 15%);
-    color: #fff;
-    background-color: lightgreen;
-    border-radius: 6px;
-    padding: 0 6px;
+  .text-center {
+    text-align: center;
   }
 }
