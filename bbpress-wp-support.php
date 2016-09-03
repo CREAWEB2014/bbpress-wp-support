@@ -70,7 +70,7 @@ add_action( 'bbp_theme_before_topic_form', __NAMESPACE__ . '\\add_support_form' 
  *
  * @param int $post_id The current post ID.
  *
- * @return mixed
+ * @return int $post_id The post_ID.
  */
 function save_support_params( $post_id ) {
 	if ( ! isset( $_POST['support'] ) || is_admin() ) {
@@ -140,6 +140,8 @@ function save_support_params( $post_id ) {
 			delete_post_meta( $post_id, 'bbpcs_support_' . $support_field_key );
 		}
 	}
+
+	return $post_id;
 }
 
 add_action( 'save_post_topic', __NAMESPACE__ . '\\save_support_params' );
