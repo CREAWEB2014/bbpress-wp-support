@@ -4,7 +4,10 @@
  * User: treen
  * Date: 03/09/2016
  * Time: 18:08
+ *
+ * @package bbpress-wp-support
  */
+
 global $wp_version, $required_php_version, $required_mysql_version;
 ?>
 <div class="bbpcs__summary" <?php if ( ! bbp_is_edit() ) : ?>style="display: none"<?php endif ?>>

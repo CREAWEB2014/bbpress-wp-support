@@ -4,7 +4,10 @@
  * User: treen
  * Date: 03/09/2016
  * Time: 18:08
+ *
+ * @package bbpress-wp-support
  */
+
 ?>
 <div class="bbpcs__panel">
 	<div class="bbpcs__panel__headers">
