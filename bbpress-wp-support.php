@@ -61,11 +61,12 @@ function add_support_form( $content ) {
 				     data-panel="manuel"><?php esc_attr_e( 'Manuel System', 'bbpress-wp-support' ) ?></div>
 			</div>
 			<div class="bbpcs__panel__container">
-				<div class="bbpcs__panel__content" id="bbpcs_panel_automatic">
+				<div class="bbpcs__panel__content" id="bbpcs_panel_automatic"
+				     <?php if ( bbp_is_edit() ): ?>style="display: none"<?php endif ?>>
 					<p class="bbpcs__panel__content__description">
 						<?php printf( __( 'You can download the support plugin <a href="%s">here</a>, install it and after activation, go back to your dashboard to find the "wordpress-fr.net/support" panel, PASTE content here... ', 'bbpress-wp-support' ), 'https://wordpress.org/plugins/forum-wordpress-fr/' ) ?>
 					</p>
-					<textarea name="support[parser]" id="support_parser" cols="30" rows="5"></textarea>
+					<textarea name="support[parser]" id="support_parser" cols="30" rows="7"></textarea>
 					<button type="submit"
 					        id="scanparser"><?php esc_attr_e( 'Submit', 'bbpress-wp-support' ) ?></button>
 				</div>
@@ -77,95 +78,135 @@ function add_support_form( $content ) {
 					       class="bbpcs__panel__content__input"
 					       pattern="[.\d]{1}[.\d]{1}(?:[.\d])?"
 					       placeholder="<?php esc_attr_e( 'Your WordPress version number (ex: 4.6)', 'bbpress-wp-support' ) ?>"
-					       data-id="wp_version" required>
+					       data-id="wp_version"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_wp_version', true ) ?>"
+					       required>
+
+					<label for="support[php_version]" class="bbpcs__panel__content__label">
+						<?php esc_attr_e( 'PHP Version', 'bbpress-wp-support' ) ?>
+					</label>
+					<input type="text" id="support_php_version" name="support[php_version]"
+					       class="bbpcs__panel__content__input"
+					       placeholder="<?php esc_attr_e( 'Your PHP version number', 'bbpress-wp-support' ) ?>"
+					       data-id="php_version"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ) ?>"
+					       required>
+
 					<label for="support[php_mysql]" class="bbpcs__panel__content__label">
 						<?php esc_attr_e( 'PHP Version', 'bbpress-wp-support' ) ?>
 					</label>
-					<input type="text" id="support_php_mysql" name="support[php_mysql]"
+					<input type="text" id="support_mysql_version" name="support[mysql_version]"
 					       class="bbpcs__panel__content__input"
-					       placeholder="<?php esc_attr_e( 'Your PHP version number', 'bbpress-wp-support' ) ?>"
-					       data-id="php_mysql" required>
+					       placeholder="<?php esc_attr_e( 'Your Mysql version number', 'bbpress-wp-support' ) ?>"
+					       data-id="mysql_version"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) ?>"
+					       required>
+
 					<label for="support[theme_name]" class="bbpcs__panel__content__label">
 						<?php esc_attr_e( 'Theme name', 'bbpress-wp-support' ) ?>
 					</label>
 					<input type="text" id="support_theme_name" name="support[theme_name]"
 					       class="bbpcs__panel__content__input"
 					       placeholder="<?php esc_attr_e( 'Your actual theme name', 'bbpress-wp-support' ) ?>"
-					       data-id="theme_name" required>
+					       data-id="theme_name"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_theme_name', true ) ?>"
+					       required>
+
 					<label for="support[theme_uri]" class="bbpcs__panel__content__label">
 						<?php esc_attr_e( 'Theme URL', 'bbpress-wp-support' ) ?>
 					</label>
 					<input type="text" id="support_theme_uri" name="support[theme_uri]"
 					       class="bbpcs__panel__content__input"
 					       placeholder="<?php esc_attr_e( 'Your actual theme URL', 'bbpress-wp-support' ) ?>"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_theme_uri', true ) ?>"
 					       data-id="theme_uri">
+
 					<label for="support[plugins]" class="bbpcs__panel__content__label">
 						<?php esc_attr_e( 'Installed Plugins', 'bbpress-wp-support' ) ?>
 					</label>
 					<input type="text" id="support_plugins" name="support[plugins]"
 					       class="bbpcs__panel__content__input"
 					       placeholder="<?php esc_attr_e( 'List of installed plugins', 'bbpress-wp-support' ) ?>"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_plugins', true ) ?>"
 					       data-id="plugins" required>
+
 					<label for="support[host]" class="bbpcs__panel__content__label">
 						<?php esc_attr_e( 'Host', 'bbpress-wp-support' ) ?>
 					</label>
 					<input type="text" id="support_host" name="support[host]"
 					       class="bbpcs__panel__content__input"
 					       placeholder="<?php esc_attr_e( 'Your Wordpress provider(host)', 'bbpress-wp-support' ) ?>"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_host', true ) ?>"
 					       data-id="host">
+
 					<label for="support[url]" class="bbpcs__panel__content__label">
 						<?php esc_attr_e( 'Site URL', 'bbpress-wp-support' ) ?>
 					</label>
 					<input type="url" id="support_url" name="support[uri]"
 					       class="bbpcs__panel__content__input"
 					       placeholder="<?php esc_attr_e( 'Your WordPress site URL', 'bbpress-wp-support' ) ?>"
+					       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_uri', true ) ?>"
 					       data-id="uri" required>
 				</div>
 			</div>
 		</div>
-		<div class="bbpcs__summary" style="display: none">
+		<div class="bbpcs__summary" <?php if ( ! bbp_is_edit() ) : ?>style="display: none"<?php endif ?>>
 			<ul class="bbpcs__summary__list">
 				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--wp_version">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'WordPress Version', 'bbpress-wp-support' ) ?>
 					</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_wp_version', true ) ?></span>
 				</li>
-				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--php_mysql">
+				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--php_version">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'PHP Version', 'bbpress-wp-support' ) ?>
 						</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ) ?></span>
+				</li>
+				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--mysql_version">
+					<span class="bbpcs__summary__list__item__title">
+						<?php esc_attr_e( 'Mysql Version', 'bbpress-wp-support' ) ?>
+						</span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) ?></span>
 				</li>
 				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--theme_name">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'Theme name', 'bbpress-wp-support' ) ?>
 					</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_theme_name', true ) ?></span>
 				</li>
 				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--theme_uri">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'Theme URL', 'bbpress-wp-support' ) ?>
 						</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_theme_uri', true ) ?></span>
 				</li>
 				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--plugins">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'Installed Plugins', 'bbpress-wp-support' ) ?>
 					</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_plugins', true ) ?></span>
 				</li>
 				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--host">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'Host', 'bbpress-wp-support' ) ?>
 					</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_host', true ) ?></span>
 				</li>
 				<li class="bbpcs__summary__list__item bbpcs__summary__list__item--uri">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'Site URL', 'bbpress-wp-support' ) ?>
 					</span>
-					: <span class="bbpcs__summary__list__item__desc"></span>
+					: <span
+						class="bbpcs__summary__list__item__desc"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_uri', true ) ?></span>
 				</li>
 			</ul>
 		</div>
@@ -174,3 +215,58 @@ function add_support_form( $content ) {
 }
 
 add_action( 'bbp_theme_before_topic_form_content', __NAMESPACE__ . '\\add_support_form' );
+
+function save_support_params( $post_id ) {
+	if ( ! isset( $_POST['support'] ) ) {
+		return $post_id;
+	}
+	// Remove Parser field, we don't need to save it
+	unset( $_POST['support']['parser'] );
+	foreach ( $_POST['support'] as $support_field_key => $support_field_value ) {
+		if ( ! empty( $support_field_value ) ) {
+			switch ( $support_field_key ) {
+				case 'wp_version':
+					$parent  = wp_insert_term( 'Wordpress', 'topic-tag' );
+					$term_id = wp_set_object_terms( $post_id, 'WP ' . $support_field_value, 'topic-tag', true );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					break;
+				case 'php_version':
+					$parent  = wp_insert_term( 'PHP', 'topic-tag' );
+					$term_id = wp_set_object_terms( $post_id, 'PHP ' . substr( $support_field_value, 0, 3 ), 'topic-tag', true );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					break;
+				case 'mysql_version':
+					$parent  = wp_insert_term( 'Mysql', 'topic-tag' );
+					$term_id = wp_set_object_terms( $post_id, 'Mysql ' . substr( $support_field_value, 0, 3 ), 'topic-tag', true );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					break;
+				case 'theme_name':
+					$parent  = wp_insert_term( 'Themes', 'topic-tag' );
+					$term_id = wp_set_object_terms( $post_id, $support_field_value, 'topic-tag', true );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					break;
+				case 'plugins':
+					$parent  = wp_insert_term( 'Plugins', 'topic-tag' );
+					$plugins = explode( ',', $support_field_value );
+					foreach ( $plugins as $plugin ) {
+						$term_id = wp_set_object_terms( $post_id, $plugin, 'topic-tag', true );
+						wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					}
+					break;
+			}
+			update_post_meta( $post_id, 'bbpcs_support_' . $support_field_key, $support_field_value );
+		} else {
+			delete_post_meta( $post_id, 'bbpcs_support_' . $support_field_key );
+		}
+	}
+}
+
+add_action( 'save_post', __NAMESPACE__ . '\\save_support_params' );
+
+function add_taxonomy_childs( $taxonomy ) {
+	$taxonomy['hierarchical'] = true;
+
+	return $taxonomy;
+}
+
+add_filter( 'bbp_register_topic_taxonomy', __NAMESPACE__ . '\\add_taxonomy_childs' );
