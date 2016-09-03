@@ -11,6 +11,9 @@ jQuery(document).ready(function ($) {
         var items = parse_item(currentVal);
         $.each(items, function (key, value) {
             $('[data-id="' + key + '"]').val(value);
+            if (key !== 'uri' && key !== 'host') {
+                $('[data-id="' + key + '"]').prop('readonly', true);
+            }
             $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__desc').text(value)
         });
         $('.bbpcs__panel__content').hide();
@@ -20,9 +23,15 @@ jQuery(document).ready(function ($) {
 
     // When chaings inputs content, update summary
     $('.bbpcs__panel__content__input').on('input', function () {
+        if ($(this).val() === '') {
+            switch_editor('hide');
+            return;
+        } else {
+            switch_editor('show');
+        }
         var inputId = $('.bbpcs__summary__list__item--' + $(this).data('id'));
         inputId.find('.bbpcs__summary__list__item__desc').text($(this).val());
-        switch_editor('show');
+
     });
 
     // Panel management
@@ -84,11 +93,12 @@ jQuery(document).ready(function ($) {
             textEditor.text('');
             textEditor.prop('disabled', false);
             textEditor.parent().css('opacity', 1);
+            $('.bbpcs__container .bbpcs__alert--warning').remove();
+            $('.bbp-form').show();
             return true;
         } else {
-            textEditor.text('You must enter your setup before...');
-            textEditor.prop('disabled', true);
-            textEditor.parent().css('opacity', '0.5');
+            $('.bbpcs__container').append('<div class="bbpcs__alert bbpcs__alert--warning">' + bbpcs_alert_empty_form + '</div>');
+            $('.bbp-form').hide();
             return false;
         }
     }
