@@ -47,7 +47,7 @@ add_filter( 'bbp_get_template_part', __NAMESPACE__ . '\\add_template', 10 );
  */
 function add_support_form() {
 	wp_enqueue_style( 'bbpress-wp-support', plugin_dir_url( __FILE__ ) . 'assets/css/global.css' );
-	wp_enqueue_script( 'bbpress-wp-support', plugin_dir_url( __FILE__ ) . 'assets/js/global.js', array( 'jquery' ), false, true );
+	wp_enqueue_script( 'bbpress-wp-support', plugin_dir_url( __FILE__ ) . 'assets/js/global.min.js', array( 'jquery' ), false, true );
 	?>
 	<div id="bbpcs">
 		<div class="bbpcs__container">
