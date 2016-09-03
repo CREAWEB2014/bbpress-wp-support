@@ -1,0 +1,19 @@
+#bbpcs .bbpcs__summary {
+  border: 1px solid $summary-border-color;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 15px;
+  &__list {
+    &__item {
+      &__title {
+        font-weight: bold;
+      }
+      &__desc {
+        color: #fff;
+        background-color: green;
+        border-radius: 6px;
+        padding: 0 6px;
+      }
+    }
+  }
+}

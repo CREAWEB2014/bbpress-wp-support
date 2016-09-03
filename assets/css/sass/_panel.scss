@@ -1,0 +1,24 @@
+#bbpcs .bbpcs__panel {
+  &__headers {
+    margin-bottom: 10px;
+    text-align: center;
+    &__title {
+      display: inline-block;
+      padding: 6px 12px;
+      color: $panel-header-color;
+      border: 1px solid $panel-header-border-color;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .3s;
+      &.active {
+        color: $panel-active-header-color;
+        border-color: $panel-active-header-border-color;
+      }
+    }
+  }
+  &__content {
+    &__description {
+      text-align: justify;
+    }
+  }
+}
