@@ -20,7 +20,7 @@
 		<div class="bbpcs__panel__content" id="bbpcs_panel_automatic"
 		     <?php if ( bbp_is_edit() ): ?>style="display: none"<?php endif ?>>
 			<p class="bbpcs__panel__content__description">
-				<?php printf( __( 'You can download the support plugin <a href="%s" class="alert-link">here</a>, install it and after activation, go back to your dashboard to find the "wordpress-fr.net/support" panel, PASTE content here... ', PLUGIN_TEXT_DOMAIN ), 'https://wordpress.org/plugins/forum-wordpress-fr/' ) ?>
+				<?php printf( __( 'You can download the support plugin <a href="%s" class="alert-link" target="_blank">here</a>, install it and after activation, go back to your dashboard to find the "wordpress-fr.net/support" panel, PASTE content here... ', PLUGIN_TEXT_DOMAIN ), 'https://wordpress.org/plugins/forum-wordpress-fr/' ) ?>
 			</p>
 			<textarea name="support[parser]" id="support_parser" cols="30" rows="7"></textarea>
 			<button type="submit"
