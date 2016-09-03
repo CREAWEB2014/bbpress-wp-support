@@ -27,6 +27,7 @@ jQuery(document).ready(function ($) {
             switch_editor('hide');
             return;
         } else {
+            $('.bbpcs__summary').show();
             switch_editor('show');
         }
         var inputId = $('.bbpcs__summary__list__item--' + $(this).data('id'));
@@ -97,7 +98,7 @@ jQuery(document).ready(function ($) {
             $('.bbp-form').show();
             return true;
         } else {
-            $('.bbpcs__container').prepend('<div class="bbpcs__alert bbpcs__alert--info text-center">' + bbpcs_alert_empty_form + '</div>');
+            $('.bbpcs__container').prepend('<div class="bbpcs__alert bbpcs__alert--warning text-center">' + bbpcs_alert_empty_form + '</div>');
             $('.bbp-form').hide();
             return false;
         }
