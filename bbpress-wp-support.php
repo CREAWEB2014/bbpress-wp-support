@@ -20,27 +20,6 @@ if ( ! is_plugin_active( 'bbpress/bbpress.php' ) ) {
 }
 
 /**
- * Add custom templates to BBPress
- *
- * @see bbp_get_template_part()
- *
- * @param array $templates Asked templates.
- *
- * @return mixed
- */
-function add_template( $templates ) {
-	$template_path = plugin_dir_path( __FILE__ ) . 'templates/';
-	$files         = scandir( $template_path );
-	if ( $result = array_intersect( $templates, $files ) ) {
-		return include_once $template_path . $result[0];
-	}
-
-	return $templates;
-}
-
-add_filter( 'bbp_get_template_part', __NAMESPACE__ . '\\add_template', 10 );
-
-/**
  * Add our form.
  *
  * @todo: Display only if we are on the support forum
