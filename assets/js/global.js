@@ -2,6 +2,7 @@
  * Created by treen on 03/09/2016.
  */
 jQuery(document).ready(function ($) {
+    var textEditor = $('#bbp_topic_content');
 
     // Onsubmit, parse datas and populate fields
     $('#bbpcs').on('click', 'button#scanparser', function (e) {
@@ -14,12 +15,14 @@ jQuery(document).ready(function ($) {
         });
         $('.bbpcs__panel__content').hide();
         $('.bbpcs__summary').show();
+        switch_editor('show');
     });
 
     // When chaings inputs content, update summary
     $('.bbpcs__panel__content__input').on('input', function () {
         var inputId = $('.bbpcs__summary__list__item--' + $(this).data('id'));
-        inputId.find('.bbpcs__summary__list__item__desc').text($(this).val())
+        inputId.find('.bbpcs__summary__list__item__desc').text($(this).val());
+        switch_editor('show');
     });
 
     // Panel management
@@ -72,10 +75,28 @@ jQuery(document).ready(function ($) {
                 }
             }
         });
-        console.log(output);
-
         return output;
 
+    }
+
+    function switch_editor(mode) {
+        if (mode === 'show') {
+            textEditor.text('');
+            textEditor.prop('disabled', false);
+            textEditor.parent().css('opacity', 1);
+            return true;
+        } else {
+            textEditor.text('You must enter your setup before...');
+            textEditor.prop('disabled', true);
+            textEditor.parent().css('opacity', '0.5');
+            return false;
+        }
+    }
+
+    if (!$('#support_wp_version').val()) {
+        switch_editor('hide');
+    } else {
+        switch_editor('show');
     }
 
 });
