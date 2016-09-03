@@ -162,8 +162,10 @@ function add_support_form( $content ) {
 					</span>
 						: <span
 							class="bbpcs__summary__list__item__version"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_wp_version', true ) ?></span>
-						<span
-							class="bbpcs__summary__list__item__latest"><?php printf( __( 'Latest %s' ), $wp_version ) ?></span>
+						<?php if ( get_post_meta( get_the_ID(), 'bbpcs_support_wp_version', true ) && version_compare( get_post_meta( get_the_ID(), 'bbpcs_support_wp_version', true ), $wp_version, '<' ) ): ?>
+							<span
+								class="bbpcs__summary__list__item__latest"><?php printf( __( 'Latest %s' ), $wp_version ) ?></span>
+						<?php endif ?>
 					</li>
 					<li class="bbpcs__summary__list__item bbpcs__summary__list__item--php_version">
 					<span class="bbpcs__summary__list__item__title">
@@ -171,8 +173,10 @@ function add_support_form( $content ) {
 						</span>
 						: <span
 							class="bbpcs__summary__list__item__version"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ) ?></span>
-						<span
-							class="bbpcs__summary__list__item__latest"><?php printf( __( 'Required %s' ), $required_php_version ) ?></span>
+						<?php if ( get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ) && version_compare( get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ), $required_php_version, '<' ) ): ?>
+							<span
+								class="bbpcs__summary__list__item__latest"><?php printf( __( 'Required %s' ), $required_php_version ) ?></span>
+						<?php endif ?>
 					</li>
 					<li class="bbpcs__summary__list__item bbpcs__summary__list__item--mysql_version">
 					<span class="bbpcs__summary__list__item__title">
@@ -180,8 +184,10 @@ function add_support_form( $content ) {
 						</span>
 						: <span
 							class="bbpcs__summary__list__item__version"><?php echo get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) ?></span>
-						<span
-							class="bbpcs__summary__list__item__latest"><?php printf( __( 'Required %s' ), $required_mysql_version ) ?></span>
+						<?php if ( get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) && version_compare( get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ), $required_mysql_version, '<' ) ): ?>
+							<span
+								class="bbpcs__summary__list__item__latest"><?php printf( __( 'Required %s' ), $required_mysql_version ) ?></span>
+						<?php endif ?>
 					</li>
 					<li class="bbpcs__summary__list__item bbpcs__summary__list__item--theme_name">
 					<span class="bbpcs__summary__list__item__title">

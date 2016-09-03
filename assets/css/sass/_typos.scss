@@ -9,7 +9,7 @@
         @extend .alert-success;
       }
       &--warning {
-        @extend .alert-warning;
+        @extend .alert-danger;
       }
     }
   }
