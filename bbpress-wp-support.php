@@ -80,7 +80,7 @@ function add_support_form( $content ) {
 						</label>
 						<input type="text" id="support_wp_version" name="support[wp_version]"
 						       class="bbpcs__panel__content__input"
-						       pattern="[.\d]{1}[.\d]{1}(?:[.\d])?"
+						       pattern="[\d]{1}.[\d]{1}(?:.[\d]+)?"
 						       placeholder="<?php esc_attr_e( 'Your WordPress version number (ex: 4.6)', PLUGIN_TEXT_DOMAIN ) ?>"
 						       data-id="wp_version"
 						       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_wp_version', true ) ?>"
@@ -91,6 +91,7 @@ function add_support_form( $content ) {
 						</label>
 						<input type="text" id="support_php_version" name="support[php_version]"
 						       class="bbpcs__panel__content__input"
+						       pattern="[\d]{1}.[\d]{1}(?:.[\d]+)?"
 						       placeholder="<?php esc_attr_e( 'Your PHP version number (ex: 5.6)', PLUGIN_TEXT_DOMAIN ) ?>"
 						       data-id="php_version"
 						       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ) ?>"
@@ -101,6 +102,7 @@ function add_support_form( $content ) {
 						</label>
 						<input type="text" id="support_mysql_version" name="support[mysql_version]"
 						       class="bbpcs__panel__content__input"
+						       pattern="[\d]{1}.[\d]{1}(?:.[\d]+)?"
 						       placeholder="<?php esc_attr_e( 'Your Mysql version number (ex: 5.7)', PLUGIN_TEXT_DOMAIN ) ?>"
 						       data-id="mysql_version"
 						       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) ?>"
