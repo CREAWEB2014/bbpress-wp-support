@@ -243,31 +243,56 @@ function save_support_params( $post_id ) {
 		if ( ! empty( $support_field_value ) ) {
 			switch ( $support_field_key ) {
 				case 'wp_version':
-					$parent  = wp_insert_term( 'Wordpress', 'topic-tag' );
+					if ( ! $parent = get_term_by( 'name', 'Wordpress', 'topic-tag' ) ) {
+						$parent    = wp_insert_term( 'Wordpress', 'topic-tag' );
+						$parent_id = $parent['term_id'];
+					} else {
+						$parent_id = $parent->term_id;
+					}
 					$term_id = wp_set_object_terms( $post_id, 'WP ' . $support_field_value, 'topic-tag', true );
-					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent_id ) );
 					break;
 				case 'php_version':
-					$parent  = wp_insert_term( 'PHP', 'topic-tag' );
+					if ( ! $parent = get_term_by( 'name', 'PHP', 'topic-tag' ) ) {
+						$parent    = wp_insert_term( 'PHP', 'topic-tag' );
+						$parent_id = $parent['term_id'];
+					} else {
+						$parent_id = $parent->term_id;
+					}
 					$term_id = wp_set_object_terms( $post_id, 'PHP ' . substr( $support_field_value, 0, 3 ), 'topic-tag', true );
-					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent_id ) );
 					break;
 				case 'mysql_version':
-					$parent  = wp_insert_term( 'Mysql', 'topic-tag' );
+					if ( ! $parent = get_term_by( 'name', 'Mysql', 'topic-tag' ) ) {
+						$parent    = wp_insert_term( 'Mysql', 'topic-tag' );
+						$parent_id = $parent['term_id'];
+					} else {
+						$parent_id = $parent->term_id;
+					}
 					$term_id = wp_set_object_terms( $post_id, 'Mysql ' . substr( $support_field_value, 0, 3 ), 'topic-tag', true );
-					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent_id ) );
 					break;
 				case 'theme_name':
-					$parent  = wp_insert_term( 'Themes', 'topic-tag' );
+					if ( ! $parent = get_term_by( 'name', 'Themes', 'topic-tag' ) ) {
+						$parent    = wp_insert_term( 'Themes', 'topic-tag' );
+						$parent_id = $parent['term_id'];
+					} else {
+						$parent_id = $parent->term_id;
+					}
 					$term_id = wp_set_object_terms( $post_id, $support_field_value, 'topic-tag', true );
-					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+					wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent_id ) );
 					break;
 				case 'plugins':
-					$parent  = wp_insert_term( 'Plugins', 'topic-tag' );
+					if ( ! $parent = get_term_by( 'name', 'Plugins', 'topic-tag' ) ) {
+						$parent    = wp_insert_term( 'Plugins', 'topic-tag' );
+						$parent_id = $parent['term_id'];
+					} else {
+						$parent_id = $parent->term_id;
+					}
 					$plugins = explode( ',', $support_field_value );
 					foreach ( $plugins as $plugin ) {
 						$term_id = wp_set_object_terms( $post_id, $plugin, 'topic-tag', true );
-						wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent['term_id'] ) );
+						wp_update_term( $term_id[0], 'topic-tag', array( 'parent' => $parent_id ) );
 					}
 					break;
 			}
