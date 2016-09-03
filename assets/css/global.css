@@ -1,3 +1,107 @@
+.alert, .bbpcs__alert, #bbpcs .bbpcs__summary {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert h4, .bbpcs__alert h4, #bbpcs .bbpcs__summary h4 {
+    margin-top: 0;
+    color: inherit;
+}
+
+.alert .alert-link, .bbpcs__alert .alert-link, #bbpcs .bbpcs__summary .alert-link {
+    font-weight: bold;
+}
+
+.alert > p, .bbpcs__alert > p, #bbpcs .bbpcs__summary > p,
+.alert > ul,
+.bbpcs__alert > ul,
+#bbpcs .bbpcs__summary > ul {
+    margin-bottom: 0;
+}
+
+.alert > p + p, .bbpcs__alert > p + p, #bbpcs .bbpcs__summary > p + p {
+    margin-top: 5px;
+}
+
+.alert-dismissable,
+.alert-dismissible {
+    padding-right: 35px;
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+}
+
+.alert-success, #bbpcs .bbpcs__summary {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.alert-success hr, #bbpcs .bbpcs__summary hr {
+    border-top-color: #c9e2b3;
+}
+
+.alert-success .alert-link, #bbpcs .bbpcs__summary .alert-link {
+    color: #2b542c;
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+
+.alert-info hr {
+    border-top-color: #a6e1ec;
+}
+
+.alert-info .alert-link {
+    color: #245269;
+}
+
+.alert-warning, .bbpcs__alert {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
+
+.alert-warning hr, .bbpcs__alert hr {
+    border-top-color: #f7e1b5;
+}
+
+.alert-warning .alert-link, .bbpcs__alert .alert-link {
+    color: #66512c;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+.alert-danger hr {
+    border-top-color: #e4b9c0;
+}
+
+.alert-danger .alert-link {
+    color: #843534;
+}
+
+.bbpcs__label {
+    border: 1px solid #4ee44e;
+    color: #fff;
+    background-color: lightgreen;
+    border-radius: 6px;
+    padding: 0 6px;
+}
+
 .bbpcs__header__title {
     font-size: 280%;
     text-align: center;
@@ -22,32 +126,25 @@
     color: #444;
     border-color: #444;
 }
-
 #bbpcs .bbpcs__panel__content__description {
     text-align: justify;
 }
 
 #bbpcs .bbpcs__summary {
-    border: 1px solid #787878;
-    border-radius: 6px;
-    padding: 8px;
-    margin-bottom: 15px;
+    margin: 15px;
 }
 
 #bbpcs .bbpcs__summary__list__item__title {
     font-weight: bold;
 }
 
-#bbpcs .bbpcs__summary__list__item__desc {
-    color: #fff;
-    background-color: green;
-    border-radius: 6px;
-    padding: 0 6px;
-}
-
 #bbpcs .bbpcs__panel__content button#scanparser {
     margin: 15px auto;
     display: block;
+}
+
+#bbpcs .bbpcs__panel__content #support_parser {
+    font-size: 10px;
 }
 
 /*# sourceMappingURL=global.css.map */

@@ -1,0 +1,12 @@
+.bbpcs {
+  &__alert {
+    @extend .alert, .alert-warning;
+  }
+  &__label {
+    border: 1px solid darken(lightgreen, 15%);
+    color: #fff;
+    background-color: lightgreen;
+    border-radius: 6px;
+    padding: 0 6px;
+  }
+}
