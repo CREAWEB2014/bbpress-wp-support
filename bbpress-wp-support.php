@@ -43,7 +43,7 @@ add_filter( 'bbp_get_template_part', __NAMESPACE__ . '\\add_template', 10 );
 /**
  * Add our form.
  *
- * @param string $content HTML content.
+ * @todo: Display only if we are on the support forum
  */
 function add_support_form() {
 	wp_enqueue_style( 'bbpress-wp-support', plugin_dir_url( __FILE__ ) . 'assets/css/global.css' );
@@ -65,6 +65,13 @@ function add_support_form() {
 
 add_action( 'bbp_theme_before_topic_form', __NAMESPACE__ . '\\add_support_form' );
 
+/**
+ * Save custom fields values
+ *
+ * @param int $post_id The current post ID.
+ *
+ * @return mixed
+ */
 function save_support_params( $post_id ) {
 	if ( ! isset( $_POST['support'] ) || is_admin() ) {
 		return $post_id;
@@ -135,8 +142,15 @@ function save_support_params( $post_id ) {
 	}
 }
 
-add_action( 'save_post', __NAMESPACE__ . '\\save_support_params' );
+add_action( 'save_post_topic', __NAMESPACE__ . '\\save_support_params' );
 
+/**
+ * Allow BBP topic-tag taxonomy to have childrens
+ *
+ * @param array $taxonomy The bbp topic-tag taxonomy.
+ *
+ * @return mixed
+ */
 function add_taxonomy_childs( $taxonomy ) {
 	$taxonomy['hierarchical'] = true;
 
@@ -145,10 +159,15 @@ function add_taxonomy_childs( $taxonomy ) {
 
 add_filter( 'bbp_register_topic_taxonomy', __NAMESPACE__ . '\\add_taxonomy_childs' );
 
-function add_js_variables() { ?>
+/**
+ * Add bbpcs_alert_empty_form to global JS variables.
+ */
+function add_js_variables() {
+	?>
 	<script type="text/javascript">
 		var bbpcs_alert_empty_form = '<?php _ex( 'You have to give us some Support informations before we can help you.<br/>Please fill the support form as much as you can.', 'alert', PLUGIN_TEXT_DOMAIN ) ?>';
-	</script><?php
+	</script>
+	<?php
 }
 
 add_action( 'wp_head', __NAMESPACE__ . '\\add_js_variables' );
