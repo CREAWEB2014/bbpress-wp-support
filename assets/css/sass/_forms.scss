@@ -1,6 +1,17 @@
 #bbpcs .bbpcs__panel__content {
   &__input {
-
+    &:valid {
+      border-color: $brand-success;
+      background-color: transparentize($brand-success, 0.4);
+    }
+    &:read-only {
+      border-color: transparentize($brand-success, 0.6);
+      background-color: transparentize($brand-success, 0.9);
+    }
+    &:invalid {
+      border-color: $brand-danger;
+      background-color: transparentize($brand-danger, 0.4);
+    }
   }
   button#scanparser {
     margin: 15px auto;
