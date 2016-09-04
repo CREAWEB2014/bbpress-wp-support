@@ -1,14 +1,22 @@
 #bbpcs .bbpcs__summary {
-  @extend .bg-info;
-  padding: 15px;
+  @extend .panel, .panel-info;
   margin: 15px auto;
+  &__heading {
+    @extend .panel-heading;
+    &__title {
+      @extend .panel-title;
+    }
+  }
+  &__content {
+    @extend .panel-body;
+  }
   &__list {
     &__item {
       &__title {
         font-weight: bold;
       }
       &__version {
-        @extend .label, .label-info;
+        @extend .label, .label-primary;
       }
       &__latest {
         @extend .label, .label-danger;

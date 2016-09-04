@@ -57,10 +57,11 @@ jQuery(document).ready(function ($) {
      */
     function switch_editor(mode) {
         if (mode === 'show') {
-            $('.bbpcs__container .bbpcs__alert').remove();
+            $('.bbpcs__container .bbpcs__alert').fadeOut();
             $('.bbp-form').show();
             return true;
         } else {
+            $('.bbpcs__container .bbpcs__alert').remove();
             $('.bbpcs__container').prepend('<div class="bbpcs__alert bbpcs__alert--warning text-center">' + bbpcs_alert_empty_form + '</div>');
             $('.bbp-form').hide();
             return false;
@@ -104,7 +105,6 @@ jQuery(document).ready(function ($) {
     $('.bbpcs__panel__content__input').on('input', function () {
         if ($(this).val() === '') {
             switch_editor('hide');
-            return;
         } else {
             $('.bbpcs__summary').show();
             switch_editor('show');

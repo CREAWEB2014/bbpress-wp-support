@@ -2,17 +2,16 @@
   @extend .form-group;
   &__input {
     @extend .form-control;
-    &:valid {
-      border-color: $brand-success;
-      background-color: transparentize($brand-success, 0.4);
-    }
-    &:read-only {
-      border-color: transparentize($brand-success, 0.6);
-      background-color: transparentize($brand-success, 0.9);
-    }
-    &:invalid {
-      border-color: $brand-danger;
-      background-color: transparentize($brand-danger, 0.4);
+    &:not(:placeholder-shown) {
+      &:valid {
+        border-color: $brand-success;
+      }
+      &:read-only {
+        border-color: transparentize($brand-success, 0.6);
+      }
+      &:invalid {
+        border-color: $brand-danger;
+      }
     }
   }
   #scanparser {

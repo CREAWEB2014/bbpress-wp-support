@@ -3,16 +3,9 @@
     margin-bottom: 10px;
     text-align: center;
     &__title {
-      display: inline-block;
-      padding: 6px 12px;
-      color: $panel-header-color;
-      border: 1px solid $panel-header-border-color;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all .3s;
-      &.active {
-        color: $panel-active-header-color;
-        border-color: $panel-active-header-border-color;
+      @extend .btn, .btn-default;
+      &.active{
+        @extend .btn-primary;
       }
     }
   }
