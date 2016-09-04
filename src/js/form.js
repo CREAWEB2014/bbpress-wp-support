@@ -67,8 +67,8 @@ jQuery(document).ready(function ($) {
             return false;
         }
     }
-    if(!$('body').hasClass('topic-edit'))
-    {
+
+    if (!$('body').hasClass('topic-edit')) {
         switch_editor('hide');
     }
 
@@ -78,12 +78,12 @@ jQuery(document).ready(function ($) {
     $('#bbpcs').on('click', '#scanparser', function (e) {
         e.preventDefault();
         var currentVal = $('#support_parser').val();
-        if(!currentVal.length){
+        if (!currentVal.length) {
             $(this).removeClass("btn-success");
             $(this).removeClass("btn-default");
             $(this).addClass("btn-danger");
             return;
-        }else{
+        } else {
             $(this).removeClass("btn-default");
             $(this).removeClass("btn-danger");
             $(this).addClass("btn-success");
