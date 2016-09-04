@@ -24,27 +24,27 @@ jQuery(document).ready(function ($) {
                 matches = item.match(pattern);
                 switch (matches[1]) {
                     case 'Version de WordPress':
-                        output['wp_version'] = matches[2];
+                        output.wp_version = matches[2];
                         break;
                     case 'Version de PHP/MySQL':
                         var php_mysql = matches[2].split(' / ');
-                        output['php_version'] = php_mysql[0];
-                        output['mysql_version'] = php_mysql[1];
+                        output.php_version = php_mysql[0];
+                        output.mysql_version = php_mysql[1];
                         break;
                     case 'Thème utilisé':
-                        output['theme_name'] = matches[2];
+                        output.theme_name = matches[2];
                         break;
                     case 'Thème URI':
-                        output['theme_uri'] = matches[2];
+                        output.theme_uri = matches[2];
                         break;
                     case 'Extensions en place':
-                        output['plugins'] = matches[2];
+                        output.plugins = matches[2];
                         break;
                     case 'Adresse du site':
-                        output['uri'] = matches[2];
+                        output.uri = matches[2];
                         break;
                     case 'Nom de l\'hébergeur':
-                        output['host'] = matches[2];
+                        output.host = matches[2];
                         break;
                 }
             }
@@ -83,7 +83,7 @@ jQuery(document).ready(function ($) {
             if (key !== 'uri' && key !== 'host') {
                 $('[data-id="' + key + '"]').prop('readonly', true);
             }
-            $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__version').text(value)
+            $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__version').text(value);
         });
         $('.bbpcs__panel__content').hide();
         $('.bbpcs__summary').show();
