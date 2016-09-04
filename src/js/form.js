@@ -67,8 +67,10 @@ jQuery(document).ready(function ($) {
             return false;
         }
     }
-
-    switch_editor('hide');
+    if(!$('body').hasClass('topic-edit'))
+    {
+        switch_editor('hide');
+    }
 
     /*
      * Parse textcontent when submit
