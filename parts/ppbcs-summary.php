@@ -38,19 +38,6 @@ global $wp_version, $required_php_version, $required_mysql_version;
 				</span>
 			<?php endif ?>
 		</li>
-		<li class="bbpcs__summary__list__item bbpcs__summary__list__item--mysql_version">
-					<span class="bbpcs__summary__list__item__title">
-						<?php esc_attr_e( 'Mysql Version', PLUGIN_TEXT_DOMAIN ) ?> :
-						</span>
-			<span class="bbpcs__summary__list__item__version">
-				<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) ?>
-			</span>
-			<?php if ( get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) && version_compare( get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ), $required_mysql_version, '<' ) ) : ?>
-				<span class="bbpcs__summary__list__item__latest">
-					<?php printf( __( 'Required %s' ), $required_mysql_version ) ?>
-				</span>
-			<?php endif ?>
-		</li>
 		<li class="bbpcs__summary__list__item bbpcs__summary__list__item--theme_name">
 					<span class="bbpcs__summary__list__item__title">
 						<?php esc_attr_e( 'Theme name', PLUGIN_TEXT_DOMAIN ) ?> :

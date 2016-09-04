@@ -49,17 +49,6 @@
 			       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_php_version', true ) ?>"
 			       required>
 
-			<label for="support[php_mysql]" class="bbpcs__panel__content__label">
-				<?php esc_attr_e( 'PHP Version', 'bbpress-wp-support' ) ?>
-			</label>
-			<input type="text" id="support_mysql_version" name="support[mysql_version]"
-			       class="bbpcs__panel__content__input"
-			       pattern="[\d]{1}.[\d]{1}(?:.[\d]+)?"
-			       placeholder="<?php esc_attr_e( 'Your Mysql version number (ex: 5.7)', 'bbpress-wp-support' ) ?>"
-			       data-id="mysql_version"
-			       value="<?php echo get_post_meta( get_the_ID(), 'bbpcs_support_mysql_version', true ) ?>"
-			       required>
-
 			<label for="support[theme_name]" class="bbpcs__panel__content__label">
 				<?php esc_attr_e( 'Theme name', 'bbpress-wp-support' ) ?>
 			</label>

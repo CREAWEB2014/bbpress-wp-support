@@ -29,7 +29,6 @@ jQuery(document).ready(function ($) {
                     case 'Version de PHP/MySQL':
                         var php_mysql = matches[2].split(' / ');
                         output.php_version = php_mysql[0];
-                        output.mysql_version = php_mysql[1];
                         break;
                     case 'Thème utilisé':
                         output.theme_name = matches[2];
