@@ -1,49 +1,13 @@
 /**
- * Created by treen on 03/09/2016.
+ * Parse Wordpress-fr support informations to fill the tech form.
+ *
+ * Created by treen on 04/09/2016.
+ *
+ * @package bbpress-wp-supporr
+ *
  */
 jQuery(document).ready(function ($) {
     var textEditor = $('#bbp_topic_content');
-
-    // Onsubmit, parse datas and populate fields
-    $('#bbpcs').on('click', 'button#scanparser', function (e) {
-        e.preventDefault();
-        var currentVal = $('#support_parser').val();
-        var items = parse_item(currentVal);
-        $.each(items, function (key, value) {
-            $('[data-id="' + key + '"]').val(value);
-            if (key !== 'uri' && key !== 'host') {
-                $('[data-id="' + key + '"]').prop('readonly', true);
-            }
-            $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__version').text(value)
-        });
-        $('.bbpcs__panel__content').hide();
-        $('.bbpcs__summary').show();
-        switch_editor('show');
-    });
-
-    // When chaings inputs content, update summary
-    $('.bbpcs__panel__content__input').on('input', function () {
-        if ($(this).val() === '') {
-            switch_editor('hide');
-            return;
-        } else {
-            $('.bbpcs__summary').show();
-            switch_editor('show');
-        }
-        var inputId = $('.bbpcs__summary__list__item--' + $(this).data('id'));
-        inputId.find('.bbpcs__summary__list__item__version').text($(this).val());
-
-    });
-
-    // Panel management
-    $('.bbpcs__panel__headers__title').click(function () {
-        var panel_prefix = '#bbpcs_panel_';
-        var panel = panel_prefix + $(this).data('panel');
-        $('.bbpcs__panel__content').hide();
-        $('.bbpcs__panel__headers__title').removeClass('active');
-        $(panel).fadeIn();
-        $(this).addClass('active');
-    });
 
     /*
      * Function to parse and transform textarea string to object
@@ -60,27 +24,27 @@ jQuery(document).ready(function ($) {
                 matches = item.match(pattern);
                 switch (matches[1]) {
                     case 'Version de WordPress':
-                        output['wp_version'] = matches[2];
+                        output.wp_version = matches[2];
                         break;
                     case 'Version de PHP/MySQL':
                         var php_mysql = matches[2].split(' / ');
-                        output['php_version'] = php_mysql[0];
-                        output['mysql_version'] = php_mysql[1];
+                        output.php_version = php_mysql[0];
+                        output.mysql_version = php_mysql[1];
                         break;
                     case 'Thème utilisé':
-                        output['theme_name'] = matches[2];
+                        output.theme_name = matches[2];
                         break;
                     case 'Thème URI':
-                        output['theme_uri'] = matches[2];
+                        output.theme_uri = matches[2];
                         break;
                     case 'Extensions en place':
-                        output['plugins'] = matches[2];
+                        output.plugins = matches[2];
                         break;
                     case 'Adresse du site':
-                        output['uri'] = matches[2];
+                        output.uri = matches[2];
                         break;
                     case 'Nom de l\'hébergeur':
-                        output['host'] = matches[2];
+                        output.host = matches[2];
                         break;
                 }
             }
@@ -89,11 +53,11 @@ jQuery(document).ready(function ($) {
 
     }
 
+    /*
+     * Show hide BBPress form
+     */
     function switch_editor(mode) {
         if (mode === 'show') {
-            textEditor.text('');
-            textEditor.prop('disabled', false);
-            textEditor.parent().css('opacity', 1);
             $('.bbpcs__container .bbpcs__alert').remove();
             $('.bbp-form').show();
             return true;
@@ -104,10 +68,67 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    if (!$('#support_wp_version').val()) {
-        switch_editor('hide');
-    } else {
+    switch_editor('hide');
+
+    /*
+     * Parse textcontent when submit
+     * */
+    $('#bbpcs').on('click', '#scanparser', function (e) {
+        e.preventDefault();
+        var currentVal = $('#support_parser').val();
+        if(!currentVal.length){
+            $(this).removeClass("btn-success");
+            $(this).removeClass("btn-default");
+            $(this).addClass("btn-danger");
+            return;
+        }else{
+            $(this).removeClass("btn-default");
+            $(this).removeClass("btn-danger");
+            $(this).addClass("btn-success");
+        }
+        var items = parse_item(currentVal);
+        $.each(items, function (key, value) {
+            $('[data-id="' + key + '"]').val(value);
+            if (key !== 'uri' && key !== 'host') {
+                $('[data-id="' + key + '"]').prop('readonly', true);
+            }
+            $('.bbpcs__summary__list__item--' + key + '> .bbpcs__summary__list__item__version').text(value);
+        });
+        $('.bbpcs__panel__content').hide();
+        $('.bbpcs__summary').show();
         switch_editor('show');
-    }
+    });
+
+    /*
+     * When chaning inputs content, update summary
+     * */
+    $('.bbpcs__panel__content__input').on('input', function () {
+        if ($(this).val() === '') {
+            switch_editor('hide');
+            return;
+        } else {
+            $('.bbpcs__summary').show();
+            switch_editor('show');
+        }
+        var inputId = $('.bbpcs__summary__list__item--' + $(this).data('id'));
+        inputId.find('.bbpcs__summary__list__item__version').text($(this).val());
+
+    });
+});;/**
+ * Created by treen on 03/09/2016.
+ *
+ * @package bbpress-wp-supporr
+ */
+jQuery(document).ready(function ($) {
+    // Panel management
+    $('.bbpcs__panel__headers__title').click(function () {
+        var panel_prefix = '#bbpcs_panel_';
+        var panel = panel_prefix + $(this).data('panel');
+        $('.bbpcs__panel__content').hide();
+        $('.bbpcs__panel__headers__title').removeClass('active');
+        $(panel).fadeIn();
+        $(this).addClass('active');
+    });
+
 
 });

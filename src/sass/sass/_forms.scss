@@ -1,5 +1,7 @@
 #bbpcs .bbpcs__panel__content {
+  @extend .form-group;
   &__input {
+    @extend .form-control;
     &:valid {
       border-color: $brand-success;
       background-color: transparentize($brand-success, 0.4);
@@ -13,7 +15,7 @@
       background-color: transparentize($brand-danger, 0.4);
     }
   }
-  button#scanparser {
+  #scanparser {
     margin: 15px auto;
     display: block;
   }

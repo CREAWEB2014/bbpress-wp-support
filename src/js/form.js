@@ -58,9 +58,6 @@ jQuery(document).ready(function ($) {
      */
     function switch_editor(mode) {
         if (mode === 'show') {
-            textEditor.text('');
-            textEditor.prop('disabled', false);
-            textEditor.parent().css('opacity', 1);
             $('.bbpcs__container .bbpcs__alert').remove();
             $('.bbp-form').show();
             return true;
@@ -71,12 +68,24 @@ jQuery(document).ready(function ($) {
         }
     }
 
+    switch_editor('hide');
+
     /*
      * Parse textcontent when submit
      * */
-    $('#bbpcs').on('click', 'button#scanparser', function (e) {
+    $('#bbpcs').on('click', '#scanparser', function (e) {
         e.preventDefault();
         var currentVal = $('#support_parser').val();
+        if(!currentVal.length){
+            $(this).removeClass("btn-success");
+            $(this).removeClass("btn-default");
+            $(this).addClass("btn-danger");
+            return;
+        }else{
+            $(this).removeClass("btn-default");
+            $(this).removeClass("btn-danger");
+            $(this).addClass("btn-success");
+        }
         var items = parse_item(currentVal);
         $.each(items, function (key, value) {
             $('[data-id="' + key + '"]').val(value);

@@ -1,6 +1,6 @@
 #bbpcs .bbpcs__summary {
-  @extend .alert, .alert-success;
-
+  @extend .bg-info;
+  padding: 15px;
   margin: 15px auto;
   &__list {
     &__item {
