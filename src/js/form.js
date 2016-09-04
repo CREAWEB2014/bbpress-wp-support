@@ -53,6 +53,9 @@ jQuery(document).ready(function ($) {
 
     }
 
+    /*
+     * Show hide BBPress form
+     */
     function switch_editor(mode) {
         if (mode === 'show') {
             textEditor.text('');
@@ -68,12 +71,9 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    if (!$('#support_url').val()) {
-        switch_editor('hide');
-    } else {
-        switch_editor('show');
-    }
-
+    /*
+     * Parse textcontent when submit
+     * */
     $('#bbpcs').on('click', 'button#scanparser', function (e) {
         e.preventDefault();
         var currentVal = $('#support_parser').val();
@@ -90,7 +90,9 @@ jQuery(document).ready(function ($) {
         switch_editor('show');
     });
 
-// When chaning inputs content, update summary
+    /*
+     * When chaning inputs content, update summary
+     * */
     $('.bbpcs__panel__content__input').on('input', function () {
         if ($(this).val() === '') {
             switch_editor('hide');
